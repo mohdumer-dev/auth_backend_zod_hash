@@ -6,7 +6,9 @@ import env from "dotenv";
 env.config();
 
 // middleware
+import cookie_parser from 'cookie-parser'
 app.use(express.json());
+app.use(cookie_parser())
 
 // routes
 import Model from "./routes/application.js";

@@ -53,7 +53,6 @@ export const loginUser = async (req, res) => {
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "7 days",
       });
-      User.token = token;
       User.password=undefined
       res
         .cookie("token", token, {
@@ -62,7 +61,7 @@ export const loginUser = async (req, res) => {
           secure:process.env.SECURE === false
         })
         .status(200)
-        .json({ status: true, msg: "User Login", User });
+        .json({ status: true, token,msg: "User Login", User });
     }
   } catch (err) {
     console.log(err);
